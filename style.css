@@ -460,14 +460,14 @@ body {
 
 /* ===== Заголовок уведомления ===== */
 .device__island-text::before {
-	content: '';
+	content: 'https://github.com/dekciw';
 	font-size: 0.9rem;
 	order: 1;
 }
 
 /* ===== Подзаголовок уведомления ===== */
 .device__island-text::after {
-	content: '';
+	content: 'https://github.com/dekciw';
 	order: 2;
 	font-size: 0.7rem;
 	opacity: 0.5;
