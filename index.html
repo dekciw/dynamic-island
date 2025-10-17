@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Dynamic Island</title>
+	</head>
+	<body>
+		<!-- ===== Обёртка Dynamic Island ===== -->
+		<div class="dynamic-island">
+			<!-- ===== Радиокнопки тем ===== -->
+			<input
+				class="dynamic-island__theme-input dynamic-island__theme-input--deep-purple"
+				type="radio"
+				name="theme"
+				id="theme-deep-purple"
+				checked
+			/>
+			<input
+				class="dynamic-island__theme-input dynamic-island__theme-input--gold"
+				type="radio"
+				name="theme"
+				id="theme-gold"
+			/>
+			<input
+				class="dynamic-island__theme-input dynamic-island__theme-input--space-black"
+				type="radio"
+				name="theme"
+				id="theme-space-black"
+			/>
+			<input
+				class="dynamic-island__theme-input dynamic-island__theme-input--silver"
+				type="radio"
+				name="theme"
+				id="theme-silver"
+			/>
+
+			<!-- ===== Свотчи выбора темы ===== -->
+			<div class="dynamic-island__theme-options">
+				<label
+					class="dynamic-island__theme-option dynamic-island__theme-option--deep-purple"
+					for="theme-deep-purple"
+					aria-label="Deep purple theme"
+				></label>
+				<label
+					class="dynamic-island__theme-option dynamic-island__theme-option--gold"
+					for="theme-gold"
+					aria-label="Gold theme"
+				></label>
+				<label
+					class="dynamic-island__theme-option dynamic-island__theme-option--space-black"
+					for="theme-space-black"
+					aria-label="Space black theme"
+				></label>
+				<label
+					class="dynamic-island__theme-option dynamic-island__theme-option--silver"
+					for="theme-silver"
+					aria-label="Silver theme"
+				></label>
+			</div>
+
+			<!-- ===== Корпус устройства ===== -->
+			<div class="dynamic-island__device device">
+				<!-- ===== Боковые кнопки ===== -->
+				<div class="device__buttons">
+					<div class="device__button-group device__button-group--left">
+						<div class="device__button"></div>
+						<div class="device__button"></div>
+						<div class="device__button"></div>
+					</div>
+					<div class="device__button-group device__button-group--right">
+						<div class="device__button"></div>
+					</div>
+				</div>
+
+				<!-- ===== Камера и батарея ===== -->
+				<div class="device__camera"></div>
+				<div class="device__battery"></div>
+
+				<!-- ===== Экран и остров ===== -->
+				<div class="device__screen">
+					<!-- ===== Слои фона по темам ===== -->
+					<div class="device__background">
+						<div class="device__background-layer device__background-layer--deep-purple">
+							<div class="device__background-section">
+								<div class="device__background-glow"></div>
+							</div>
+							<div class="device__background-section">
+								<div class="device__background-glow"></div>
+							</div>
+						</div>
+						<div class="device__background-layer device__background-layer--gold">
+							<div class="device__background-section">
+								<div class="device__background-glow"></div>
+							</div>
+							<div class="device__background-section">
+								<div class="device__background-glow"></div>
+							</div>
+						</div>
+						<div class="device__background-layer device__background-layer--space-black">
+							<div class="device__background-section">
+								<div class="device__background-glow"></div>
+							</div>
+							<div class="device__background-section">
+								<div class="device__background-glow"></div>
+							</div>
+						</div>
+						<div class="device__background-layer device__background-layer--silver">
+							<div class="device__background-section">
+								<div class="device__background-glow"></div>
+							</div>
+							<div class="device__background-section">
+								<div class="device__background-glow"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- ===== Динамическая челка ===== -->
+					<div class="device__island" tabindex="0">
+						<!-- ===== Корпус челки ===== -->
+						<div class="device__island-body">
+							<!-- ===== Контент уведомления ===== -->
+							<div class="device__island-content">
+								<div class="device__island-column device__island-column--left">
+									<div class="device__island-title"></div>
+									<div class="device__island-text"></div>
+								</div>
+								<div class="device__island-column device__island-column--right">
+									<div class="device__island-progress">
+										<div class="device__island-duration"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- ===== Слой размытия ===== -->
+						<div class="device__island-blur"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
