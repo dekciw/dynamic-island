@@ -1,0 +1,720 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+/* ===== Сброс box-sizing ===== */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* ===== Высота html и body ===== */
+html,
+body {
+	height: 100%;
+}
+
+/* ===== Базовая страница ===== */
+body {
+	margin: 0;
+	background: #00000a;
+	font-family: 'Inter', sans-serif;
+	font-size: max(5px, 1vmin);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* ===== Обёртка проекта ===== */
+.dynamic-island {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 3em;
+	min-height: 100%;
+}
+
+/* ===== Анимации ===== */
+@keyframes device-appear {
+	to {
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+	}
+}
+
+@keyframes option-appear {
+	to {
+		transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+		opacity: 1;
+	}
+}
+
+/* ===== Радиокнопки тем ===== */
+.dynamic-island__theme-input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* ===== Панель свотчей ===== */
+.dynamic-island__theme-options {
+	display: flex;
+	gap: 2em;
+	margin-bottom: -0.25em;
+}
+
+/* ===== Свотчи цвета ===== */
+.dynamic-island__theme-option {
+	width: 5em;
+	height: 5em;
+	border-radius: 50%;
+	border: 0.4em solid black;
+	cursor: pointer;
+	position: relative;
+	transition: border-color 0.333s cubic-bezier(0.15, 0, 0.333, 1), transform 0.333s cubic-bezier(0.15, 0, 0.333, 1);
+	opacity: 0;
+	transform: translate3d(0, 20%, 0) scale3d(0.75, 0.75, 1);
+	animation: option-appear 0.333s cubic-bezier(0.15, 0, 0.333, 1) forwards 0.75s;
+	overflow: hidden;
+}
+
+/* ===== Смещение первого свотча ===== */
+.dynamic-island__theme-option:nth-child(1) {
+	transform-origin: 80% 200%;
+}
+
+/* ===== Смещение второго свотча ===== */
+.dynamic-island__theme-option:nth-child(2) {
+	animation-delay: 0.8s;
+	transform-origin: 60% 200%;
+}
+
+/* ===== Смещение третьего свотча ===== */
+.dynamic-island__theme-option:nth-child(3) {
+	animation-delay: 0.85s;
+	transform-origin: 40% 200%;
+}
+
+/* ===== Смещение четвертого свотча ===== */
+.dynamic-island__theme-option:nth-child(4) {
+	animation-delay: 0.9s;
+	transform-origin: 20% 200%;
+}
+
+/* ===== Подсветка свотча ===== */
+.dynamic-island__theme-option::before {
+	content: '';
+	position: absolute;
+	inset: -1px;
+	border-radius: inherit;
+	border: 0.4em solid black;
+	background-image: radial-gradient(400% 300% at 50% 225%, transparent 20%, rgba(255, 255, 255, 0.85));
+	pointer-events: none;
+}
+
+/* ===== Свотч цвета Deep Purple ===== */
+.dynamic-island__theme-option--deep-purple {
+	background: radial-gradient(100% 100% at 50% 30%, hsl(284, 100%, 55%), hsl(239, 70%, 25%));
+}
+
+/* ===== Свотч цвета Gold ===== */
+.dynamic-island__theme-option--gold {
+	background: radial-gradient(100% 100% at 50% 30%, hsl(30, 100%, 55%), hsl(15, 80%, 30%));
+}
+
+/* ===== Свотч цвета Space Black ===== */
+.dynamic-island__theme-option--space-black {
+	background: radial-gradient(100% 100% at 50% 30%, hsl(215, 40%, 35%), hsl(215, 70%, 10%));
+}
+
+/* ===== Свотч цвета Silver ===== */
+.dynamic-island__theme-option--silver {
+	background: radial-gradient(100% 100% at 50% 30%, hsl(254, 15%, 90%), hsl(254, 10%, 55%));
+}
+
+/* ===== Корпус устройства ===== */
+.dynamic-island__device {
+	position: relative;
+	z-index: 1;
+	aspect-ratio: 37 / 76;
+	height: 80em;
+	background: black;
+	border-radius: 6.666em;
+	box-shadow: 0 0 0.1em 0.25em hsl(284, 10%, 15%), 0 0 0 0.4em hsl(284, 30%, 85%);
+	box-sizing: border-box;
+	backface-visibility: hidden;
+	opacity: 0;
+	transform: scale3d(1.1, 1.1, 1);
+	animation: device-appear 1s cubic-bezier(0.15, 0, 0.333, 1) forwards;
+}
+
+/* ===== Внешняя рамка корпуса ===== */
+.dynamic-island__device::before {
+	content: '';
+	position: absolute;
+	top: 6.666em;
+	right: -0.4em;
+	bottom: 6.666em;
+	left: -0.4em;
+	border: 0.5em solid hsl(284, 20%, 30%);
+	border-left-width: 0;
+	border-right-width: 0;
+	pointer-events: none;
+}
+
+/* ===== Боковые кнопки ===== */
+.device__buttons {
+	position: absolute;
+	top: -0.4em;
+	right: -0.4em;
+	bottom: -0.4em;
+	left: -0.4em;
+	pointer-events: none;
+}
+
+/* ===== Группы кнопок ===== */
+.device__button-group {
+	position: absolute;
+	width: 0.333em;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1.5em;
+}
+
+/* ===== Левый блок кнопок ===== */
+.device__button-group--left {
+	right: 100%;
+	top: 13.332em;
+}
+
+/* ===== Усечение верхней кнопки слева ===== */
+.device__button-group--left .device__button:first-child {
+	height: 3em;
+	margin-bottom: 0.5em;
+}
+
+/* ===== Правый блок кнопок ===== */
+.device__button-group--right {
+	left: 100%;
+	transform: scale3d(-1, 1, 1);
+	top: 19.998em;
+}
+
+/* ===== Профиль кнопки ===== */
+.device__button {
+	background: hsl(284, 20%, 95%);
+	height: 6em;
+	box-shadow: inset -0.15em 0 0.1em black, inset 0 0 0.1em hsl(284, 30%, 90%), inset 0 0.2em 0.1em hsl(284, 30%, 90%),
+		inset 0 -0.2em 0.1em hsl(284, 30%, 90%), inset -0.1em 0.333em 0.1em rgba(0, 0, 0, 0.5),
+	inset -0.1em -0.333em 0.1em rgba(0, 0, 0, 0.5);
+	border-top-left-radius: 0.2em;
+	border-bottom-left-radius: 0.2em;
+}
+
+/* ===== Удлиненная кнопка справа ===== */
+.device__button-group--right .device__button {
+	height: 9.5em;
+}
+
+/* ===== Камера ===== */
+.device__camera {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 3.33em;
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+	pointer-events: none;
+	position: absolute;
+	z-index: 4;
+	top: 2.3em;
+	right: calc(50% - 16.65%);
+	margin-right: 0.383em;
+}
+
+/* ===== Линза камеры ===== */
+.device__camera::before {
+	content: '';
+	height: 33.3%;
+	aspect-ratio: 1 / 1;
+	border-radius: inherit;
+	box-shadow: inset 0 0 0.25em #4c4da3;
+	background: radial-gradient(#6667ac, transparent 50%) no-repeat 33.3% 10% / 75% 50%,
+		radial-gradient(#454680, transparent 50%) no-repeat 60% 85% / 50% 50%;
+	background-color: #080928;
+}
+
+/* ===== Заглушка батареи ===== */
+.device__battery {
+	position: absolute;
+	z-index: 5;
+	right: 0;
+	top: 0;
+	width: 5em;
+	height: 5em;
+	pointer-events: none;
+}
+
+/* ===== Экран ===== */
+.device__screen {
+	position: absolute;
+	inset: 0;
+	border-radius: 6.666em;
+	border: 1.15em solid black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2.3em;
+}
+
+/* ===== Блик на экране ===== */
+.device__screen::before {
+	content: '';
+	position: absolute;
+	z-index: 2;
+	background: radial-gradient(white, transparent 300%);
+	width: 37.6%;
+	bottom: 0.8625em;
+	height: 0.575em;
+	border-radius: 0.2875em;
+	filter: drop-shadow(0 0.1em 0.25em rgba(0, 0, 0, 0.1));
+}
+
+/* ===== Фоновая зона ===== */
+.device__background {
+	position: absolute;
+	inset: 0;
+	background-size: 100% 100%;
+	background-image: url(./background-img.png);
+	border-radius: 5.516em;
+	overflow: hidden;
+}
+
+/* ===== Кадр темы ===== */
+.device__background-layer {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	opacity: 0;
+	transition: none;
+}
+
+/* ===== Секции фона ===== */
+.device__background-section {
+	flex-grow: 1;
+	position: relative;
+	overflow: hidden;
+	border-radius: 5.516em;
+	border-bottom-left-radius: 20em;
+	border-bottom-right-radius: 20em;
+}
+
+/* ===== Градиент секции ===== */
+.device__background-section::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	transform: scale3d(1.1, 1.25, 1);
+	transform-origin: bottom;
+	transition: none;
+}
+
+/* ===== Рамка секции ===== */
+.device__background-section::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border: 0.4em solid rgba(255, 255, 255, 0.8);
+	border-radius: inherit;
+	filter: blur(0.05em);
+	mask-image: radial-gradient(100% 100% at 50% 70%, black 30%, transparent 50%);
+	-webkit-mask-image: radial-gradient(100% 100% at 50% 70%, black 30%, transparent 50%);
+}
+
+/* ===== Подсветка фона ===== */
+.device__background-glow {
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	mix-blend-mode: overlay;
+	z-index: 1;
+	background: radial-gradient(80% 150% at 50% 100%, rgba(255, 255, 255, 0.35), transparent 70%);
+}
+
+/* ===== Отражение нижней секции ===== */
+.device__background-section:last-of-type {
+	transform: scale3d(1, -1, 1) translateZ(1px);
+}
+
+/* ===== Точка поворота нижней секции ===== */
+.device__background-section:last-of-type::before {
+	transform-origin: top;
+}
+
+/* ===== Чёлка ===== */
+.device__island {
+	position: absolute;
+	z-index: 3;
+	top: 1.15em;
+	right: 1.15em;
+	left: 1.15em;
+	display: flex;
+	justify-content: center;
+	height: 100%;
+	max-height: 8.732em;
+	pointer-events: none;
+	outline: none;
+	transition: max-height 0.333s cubic-bezier(0.666, 0, 0.4, 1);
+}
+
+/* ===== Раскрытие чёлки при взаимодействии ===== */
+.device__island:focus-within,
+.device__island:hover {
+	max-height: 13.098em;
+	transition-timing-function: cubic-bezier(0.666, 0, 0.4, 1.2);
+}
+
+/* ===== Корпус чёлки ===== */
+.device__island-body {
+	position: relative;
+	background: black;
+	border-radius: 4.366em;
+	pointer-events: all;
+	overflow: hidden;
+	color: white;
+	display: flex;
+	cursor: pointer;
+	width: 100%;
+	z-index: 2;
+	filter: drop-shadow(0 1em 2em rgba(0, 0, 0, 0));
+	transform: scale3d(0.375, 0.4, 1);
+	transform-origin: top;
+	transition: transform 0.333s cubic-bezier(0.666, 0, 0.4, 1), filter 0.333s cubic-bezier(0.666, 0, 0.4, 1);
+}
+
+/* ===== Активация чёлки ===== */
+.device__island:hover .device__island-body,
+.device__island:focus-within .device__island-body {
+	filter: drop-shadow(0 1em 2em rgba(0, 0, 0, 0.5));
+	transform: scale3d(1, 1, 1);
+}
+
+/* ===== Контент чёлки ===== */
+.device__island-content {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	justify-content: stretch;
+	padding: 1.75em;
+	gap: 1em;
+	font-size: 125%;
+	transition: padding 0.333s cubic-bezier(0.666, 0, 0.4, 1);
+}
+
+/* ===== Расширение контента чёлки ===== */
+.device__island:hover .device__island-content,
+.device__island:focus-within .device__island-content {
+	padding: 2em;
+}
+
+/* ===== Колонки внутри чёлки ===== */
+.device__island-column {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	height: 100%;
+	max-height: calc(100% - 1em);
+	transition: max-height 0.333s cubic-bezier(0.666, 0, 0.4, 1), opacity 0.333s cubic-bezier(0.666, 0, 0.4, 1);
+}
+
+/* ===== Левая колонка чёлки ===== */
+.device__island-column--left {
+	flex-grow: 2;
+}
+
+/* ===== Правая колонка чёлки ===== */
+.device__island-column--right {
+	flex-grow: 1;
+}
+
+/* ===== Текст уведомления ===== */
+.device__island-text {
+	display: flex;
+	flex-direction: column;
+	gap: 0.333em;
+	opacity: 0;
+	transition: opacity 0.333s cubic-bezier(0.666, 0, 0.4, 1);
+	align-items: flex-end;
+	text-align: right;
+}
+
+/* ===== Появление текста уведомления ===== */
+.device__island:hover .device__island-text,
+.device__island:focus-within .device__island-text {
+	opacity: 1;
+}
+
+/* ===== Заголовок уведомления ===== */
+.device__island-text::before {
+	content: 'https://github.com/dekciw';
+	font-size: 0.9rem;
+	order: 1;
+}
+
+/* ===== Подзаголовок уведомления ===== */
+.device__island-text::after {
+	content: 'https://github.com/dekciw';
+	order: 2;
+	font-size: 0.7rem;
+	opacity: 0.5;
+}
+
+/* ===== Иконка уведомления ===== */
+.device__island-title {
+	background: radial-gradient(#6667ac, transparent 30%);
+	height: 100%;
+	aspect-ratio: 1 / 1;
+	border-radius: 1.5em;
+}
+
+/* ===== Прогресс и тайм-коды ===== */
+.device__island-progress {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	flex-basis: 100%;
+	max-height: 0;
+	color: rgba(255, 255, 255, 0.5);
+	opacity: 0;
+	transition: max-height 0.333s cubic-bezier(0.666, 0, 0.4, 1), opacity 0.333s cubic-bezier(0.666, 0, 0.4, 1);
+}
+
+/* ===== Появление прогресса ===== */
+.device__island:hover .device__island-progress,
+.device__island:focus-within .device__island-progress {
+	max-height: 1em;
+	opacity: 1;
+}
+
+/* ===== Время старта ===== */
+.device__island-progress::before {
+	content: '20:01';
+	position: relative;
+	top: -0.73rem;
+}
+
+/* ===== Время окончания ===== */
+.device__island-progress::after {
+	content: '-8:28';
+	position: relative;
+	top: -0.73rem;
+}
+
+/* ===== Индикатор прогресса ===== */
+.device__island-duration {
+	position: relative;
+	top: -0.75rem;
+	height: 0.5em;
+	background: rgba(255, 255, 255, 0.25);
+	border-radius: 0.25em;
+	overflow: hidden;
+	flex-grow: 1;
+}
+
+/* ===== Заполнение прогресса ===== */
+.device__island-duration::before {
+	content: '';
+	height: 100%;
+	background: white;
+	width: 25%;
+	position: absolute;
+	inset: 0;
+}
+
+/* ===== Размытие заднего плана ===== */
+.device__island-blur {
+	position: absolute;
+	z-index: 1;
+	top: calc(1.15em - 3px);
+	right: calc(1.15em - 3px);
+	left: calc(1.15em - 3px);
+	height: 100%;
+	max-height: 6.549em;
+	backdrop-filter: blur(0.2em);
+	mask-image: linear-gradient(to bottom, black calc(100% - 4.366em), transparent);
+	-webkit-mask-image: linear-gradient(to bottom, black calc(100% - 4.366em), transparent);
+	opacity: 0;
+	transition: max-height 0.333s cubic-bezier(0.666, 0, 0.4, 1), opacity 0.333s ease-in-out;
+	border-radius: 5.516em;
+}
+
+/* ===== Активация размытия ===== */
+.device__island:hover .device__island-blur,
+.device__island:focus-within .device__island-blur {
+	max-height: 13.1565em;
+	opacity: 1;
+}
+
+/* ===== Тема Deep Purple ===== */
+.device__background-layer--deep-purple .device__background-section::before {
+	background: radial-gradient(85% 125% at 50% 140%, black 66.6%, transparent),
+		radial-gradient(120% 120% at 50% 145%, hsl(239, 100%, 50%) 50%, transparent),
+		radial-gradient(150% 100% at 50% 80%, transparent 35%, hsl(334, 100%, 99%));
+	background-color: hsl(284, 100%, 50%);
+}
+
+/* ===== Тема Deep Purple (нижний слой) ===== */
+.device__background-layer--deep-purple .device__background-section:last-of-type::before {
+	background: radial-gradient(85% 125% at 50% 140%, rgb(197, 189, 189) 66.6%, transparent),
+		radial-gradient(120% 120% at 50% 145%, hsl(164, 100%, 50%) 50%, transparent),
+		radial-gradient(150% 100% at 50% 95%, transparent 15%, hsl(229, 100%, 100%));
+	background-color: hsl(224, 75%, 70%);
+}
+
+/* ===== Тема Gold ===== */
+.device__background-layer--gold .device__background-section::before {
+	background: radial-gradient(85% 125% at 50% 140%, black 66.6%, transparent),
+		radial-gradient(120% 120% at 50% 145%, hsl(345, 100%, 50%) 50%, transparent),
+		radial-gradient(150% 100% at 50% 80%, transparent 35%, hsl(80, 100%, 99%));
+	background-color: hsl(30, 100%, 50%);
+}
+
+/* ===== Тема Gold (нижний слой) ===== */
+.device__background-layer--gold .device__background-section:last-of-type::before {
+	background: radial-gradient(85% 125% at 50% 140%, rgb(197, 189, 189) 66.6%, transparent),
+		radial-gradient(120% 120% at 50% 145%, hsl(130, 100%, 50%) 50%, transparent),
+		radial-gradient(150% 100% at 50% 95%, transparent 15%, hsl(35, 100%, 100%));
+	background-color: hsl(30, 75%, 70%);
+}
+
+/* ===== Тема Space Black ===== */
+.device__background-layer--space-black .device__background-section::before {
+	background: radial-gradient(85% 125% at 50% 140%, black 66.6%, transparent),
+		radial-gradient(120% 120% at 50% 145%, hsl(170, 100%, 50%) 50%, transparent),
+		radial-gradient(150% 100% at 50% 80%, transparent 35%, hsl(265, 100%, 99%));
+	background-color: hsl(215, 100%, 35%);
+}
+
+/* ===== Тема Space Black (нижний слой) ===== */
+.device__background-layer--space-black .device__background-section:last-of-type::before {
+	background: radial-gradient(85% 125% at 50% 140%, rgb(197, 189, 189) 66.6%, transparent),
+		radial-gradient(120% 120% at 50% 145%, hsl(240, 100%, 50%) 50%, transparent),
+		radial-gradient(150% 100% at 50% 95%, transparent 15%, hsl(30, 100%, 95%));
+	background-color: hsl(25, 75%, 70%);
+}
+
+/* ===== Тема Silver ===== */
+.device__background-layer--silver .device__background-section::before {
+	background: radial-gradient(85% 125% at 50% 140%, rgb(10, 15, 30) 66.6%, transparent),
+		radial-gradient(120% 120% at 50% 145%, hsl(209, 40%, 60%) 50%, transparent),
+		radial-gradient(150% 100% at 50% 80%, transparent 35%, hsl(230, 30%, 90%));
+	background-color: hsl(254, 10%, 60%);
+}
+
+/* ===== Тема Silver (нижний слой) ===== */
+.device__background-layer--silver .device__background-section:last-of-type::before {
+	background: radial-gradient(85% 125% at 50% 140%, rgb(210, 210, 210) 66.6%, transparent),
+		radial-gradient(120% 120% at 50% 145%, hsl(200, 40%, 65%) 50%, transparent),
+		radial-gradient(150% 100% at 50% 95%, transparent 15%, hsl(210, 25%, 95%));
+	background-color: hsl(224, 30%, 85%);
+}
+
+/* ===== Подсветка Silver ===== */
+.device__background-layer--silver .device__background-glow {
+	opacity: 0.25;
+}
+
+/* ===== Активная тема: свотчи ===== */
+#theme-deep-purple:checked ~ .dynamic-island__theme-options .dynamic-island__theme-option--deep-purple,
+#theme-gold:checked ~ .dynamic-island__theme-options .dynamic-island__theme-option--gold,
+#theme-space-black:checked ~ .dynamic-island__theme-options .dynamic-island__theme-option--space-black,
+#theme-silver:checked ~ .dynamic-island__theme-options .dynamic-island__theme-option--silver {
+	border-color: white;
+	transform: scale3d(1.05, 1.05, 1);
+}
+
+/* ===== Тень корпуса Deep Purple ===== */
+#theme-deep-purple:checked ~ .dynamic-island__device {
+	box-shadow: 0 0 0.1em 0.25em hsl(284, 10%, 15%), 0 0 0 0.4em hsl(284, 30%, 85%);
+}
+
+/* ===== Тень корпуса Gold ===== */
+#theme-gold:checked ~ .dynamic-island__device {
+	box-shadow: 0 0 0.1em 0.25em hsl(30, 10%, 15%), 0 0 0 0.4em hsl(30, 40%, 85%);
+}
+
+/* ===== Тень корпуса Space Black ===== */
+#theme-space-black:checked ~ .dynamic-island__device {
+	box-shadow: 0 0 0.1em 0.25em hsl(215, 10%, 15%), 0 0 0 0.4em hsl(215, 30%, 85%);
+}
+
+/* ===== Тень корпуса Silver ===== */
+#theme-silver:checked ~ .dynamic-island__device {
+	box-shadow: 0 0 0.1em 0.25em hsl(254, 10%, 15%), 0 0 0 0.4em hsl(254, 30%, 85%);
+}
+
+/* ===== Рамка корпуса Deep Purple ===== */
+#theme-deep-purple:checked ~ .dynamic-island__device::before {
+	border-color: hsl(284, 20%, 30%);
+}
+
+/* ===== Рамка корпуса Gold ===== */
+#theme-gold:checked ~ .dynamic-island__device::before {
+	border-color: hsl(30, 30%, 30%);
+}
+
+/* ===== Рамка корпуса Space Black ===== */
+#theme-space-black:checked ~ .dynamic-island__device::before {
+	border-color: hsl(215, 30%, 30%);
+}
+
+/* ===== Рамка корпуса Silver ===== */
+#theme-silver:checked ~ .dynamic-island__device::before {
+	border-color: hsl(254, 20%, 30%);
+}
+
+/* ===== Активная тема: кнопки ===== */
+/* ===== Кнопки Deep Purple ===== */
+#theme-deep-purple:checked ~ .dynamic-island__device .device__button {
+	background: hsl(284, 20%, 95%);
+	box-shadow: inset -0.15em 0 0.1em black, inset 0 0 0.1em hsl(284, 30%, 90%), inset 0 0.2em 0.1em hsl(284, 30%, 90%),
+		inset 0 -0.2em 0.1em hsl(284, 30%, 90%), inset -0.1em 0.333em 0.1em rgba(0, 0, 0, 0.5),
+		inset -0.1em -0.333em 0.1em rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Кнопки Gold ===== */
+#theme-gold:checked ~ .dynamic-island__device .device__button {
+	background: hsl(30, 60%, 85%);
+	box-shadow: inset -0.15em 0 0.1em black, inset 0 0 0.1em hsl(30, 70%, 80%), inset 0 0.2em 0.1em hsl(30, 70%, 80%),
+		inset 0 -0.2em 0.1em hsl(30, 70%, 80%), inset -0.1em 0.333em 0.1em rgba(0, 0, 0, 0.5),
+		inset -0.1em -0.333em 0.1em rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Кнопки Space Black ===== */
+#theme-space-black:checked ~ .dynamic-island__device .device__button {
+	background: hsl(215, 20%, 30%);
+	box-shadow: inset -0.15em 0 0.1em black, inset 0 0 0.1em hsl(215, 40%, 30%), inset 0 0.2em 0.1em hsl(215, 40%, 30%),
+		inset 0 -0.2em 0.1em hsl(215, 40%, 30%), inset -0.1em 0.333em 0.1em rgba(0, 0, 0, 0.5),
+		inset -0.1em -0.333em 0.1em rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Кнопки Silver ===== */
+#theme-silver:checked ~ .dynamic-island__device .device__button {
+	background: hsl(254, 25%, 94%);
+	box-shadow: inset -0.15em 0 0.1em rgba(0, 0, 0, 0.6), inset 0 0 0.1em hsl(254, 40%, 90%), inset 0 0.2em 0.1em hsl(254, 40%, 92%),
+		inset 0 -0.2em 0.1em hsl(254, 30%, 88%), inset -0.1em 0.333em 0.1em rgba(0, 0, 0, 0.45),
+	inset -0.1em -0.333em 0.1em rgba(0, 0, 0, 0.45);
+}
+
+/* ===== Активная тема: фон ===== */
+#theme-deep-purple:checked ~ .dynamic-island__device .device__background-layer--deep-purple,
+#theme-gold:checked ~ .dynamic-island__device .device__background-layer--gold,
+#theme-space-black:checked ~ .dynamic-island__device .device__background-layer--space-black,
+#theme-silver:checked ~ .dynamic-island__device .device__background-layer--silver {
+	opacity: 1;
+	z-index: 1;
+}
